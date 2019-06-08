@@ -1,12 +1,8 @@
 package: myhouse-interaction-microphone
-revision: 1
+revision: 2
 version: development
 git: myhouse-project/myhouse-interaction-microphone
 modules:
   - interaction/microphone
-default_config:
-  - notification/speaker:
-      device: plughw:0,1
-      engine: google
-      speaker: speaker
+
 

@@ -14,12 +14,12 @@
 
 import speech_recognition
 
-from sdk.module.interaction import Interaction
-from sdk.module.helpers.message import Message
+from sdk.python.module.interaction import Interaction
+from sdk.python.module.helpers.message import Message
 
-import sdk.utils.exceptions as exception
-import sdk.utils.command
-import sdk.utils.numbers
+import sdk.python.utils.exceptions as exception
+import sdk.python.utils.command
+import sdk.python.utils.numbers
 
 # listen from voice input through a microphone
 class Microphone(Interaction):
@@ -47,10 +47,10 @@ class Microphone(Interaction):
             # run sox to record a voice sample trimming silence at the beginning and at the end
             device = "-t alsa "+str(self.config["device"]) if self.config["device"] != "" else ""
             command = "sox "+device+" "+input_file+" trim 0 "+str(self.recorder_max_duration)+" silence 1 "+str(self.recorder_start_duration)+" "+str(self.recorder_start_threshold)+"% 1 "+str(self.recorder_end_duration)+" "+str(self.recorder_end_threshold)+"%"
-            sdk.utils.command.run(command)
+            sdk.python.utils.command.run(command)
             # ensure the sample contains any sound
-            max_amplitude = sdk.utils.command.run("killall sox 2>&1 2>/dev/null; sox "+input_file+" -n stat 2>&1|grep 'Maximum amplitude'|awk '{print $3}'")
-            if not sdk.utils.numbers.is_number(max_amplitude) or float(max_amplitude) == 0: 
+            max_amplitude = sdk.python.utils.command.run("killall sox 2>&1 2>/dev/null; sox "+input_file+" -n stat 2>&1|grep 'Maximum amplitude'|awk '{print $3}'")
+            if not sdk.python.utils.numbers.is_number(max_amplitude) or float(max_amplitude) == 0: 
                 listening_message = False
                 continue
             self.log_info("Captured voice sample, processing...")
@@ -78,7 +78,7 @@ class Microphone(Interaction):
                 # run pocketsphinx to recognize the speech in the audio file
                 language = self.house["language"].replace("-","_")
                 command = "pocketsphinx_continuous -infile "+input_file+" -hmm /usr/share/pocketsphinx/model/hmm/"+language+"/hub4wsj_sc_8k/ -dict /usr/share/pocketsphinx/model/lm/"+language+"/cmu07a.dic 2>/dev/null"
-                output = sdk.utils.command.run(command)
+                output = sdk.python.utils.command.run(command)
                 request = output.replace("000000000: ","")
             if self.debug:
                 # repeat the question
@@ -98,7 +98,7 @@ class Microphone(Interaction):
         
     # What to do when shutting down
     def on_stop(self):
-        sdk.utils.command.run("killall sox 2>&1 2>/dev/null")
+        sdk.python.utils.command.run("killall sox 2>&1 2>/dev/null")
         
     # What to do when receiving a request for this module    
     def on_message(self, message):
