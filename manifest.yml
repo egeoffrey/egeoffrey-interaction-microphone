@@ -1,7 +1,10 @@
 package: myhouse-interaction-microphone
-revision: 2
+revision: 3
 version: development
-git: myhouse-project/myhouse-interaction-microphone
+github: myhouse-project/myhouse-interaction-microphone
+dockerhub: myhouse-project/myhouse-interaction-microphone
+description: Capture voice commands and respond accordingly
+tags: interaction voice
 modules:
   - interaction/microphone
 
