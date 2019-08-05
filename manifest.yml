@@ -2,11 +2,12 @@ branch: development
 description: Capture voice commands and respond accordingly
 dockerhub: myhouseproject/myhouse-interaction-microphone
 github: myhouse-project/myhouse-interaction-microphone
+icon: microphone
 manifest_schema: 2
 modules:
 - interaction/microphone:
     description: Capture voice commands and respond accordingly
 package: myhouse-interaction-microphone
-revision: 5
+revision: 6
 tags: interaction voice
 version: 1.0
