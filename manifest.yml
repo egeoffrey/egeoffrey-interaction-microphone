@@ -1,13 +1,13 @@
 branch: development
 description: Capture voice commands and respond accordingly
-dockerhub: myhouseproject/myhouse-interaction-microphone
-github: myhouse-project/myhouse-interaction-microphone
+dockerhub: egeoffrey/egeoffrey-interaction-microphone
+github: egeoffrey/egeoffrey-interaction-microphone
 icon: microphone
 manifest_schema: 2
 modules:
 - interaction/microphone:
     description: Capture voice commands and respond accordingly
-package: myhouse-interaction-microphone
-revision: 6
+package: egeoffrey-interaction-microphone
+revision: 7
 tags: interaction voice
 version: 1.0
