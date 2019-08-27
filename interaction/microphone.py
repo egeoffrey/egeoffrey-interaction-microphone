@@ -4,8 +4,8 @@
 # OS:
 # Python: SpeechRecognition
 ## CONFIGURATION:
-# required: device, engine (google|pocketsphinx), speaker
-# optional: 
+# required: engine (google|pocketsphinx), speaker
+# optional: device
 ## COMMUNICATION:
 # INBOUND: 
 # OUTBOUND: 
@@ -122,5 +122,5 @@ class Microphone(Interaction):
         if message.args == self.fullname and not message.is_null:
             if message.config_schema != self.config_schema: 
                 return False
-            if not self.is_valid_configuration(["device", "engine", "speaker"], message.get_data()): return False
+            if not self.is_valid_configuration(["engine", "speaker"], message.get_data()): return False
             self.config = message.get_data()
