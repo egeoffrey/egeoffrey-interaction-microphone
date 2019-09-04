@@ -41,6 +41,10 @@ class Microphone(Interaction):
         
     # What to do when running
     def on_start(self):
+        # start the pulseaudio daemon
+        self.log_info("Starting audio daemon...")
+        self.log_debug(sdk.python.utils.command.run("setup/start_pulseaudio.sh"))
+        # start the service
         input_file = "/tmp/audio_input.wav"
         listening_message = True
         while True:
